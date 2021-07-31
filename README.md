@@ -1,7 +1,7 @@
 ## Open Air Quality Explorer App
 ---
 This app lets you explore air quality readings form the OpenAQ API.
-![] (use.png)
+![alt text](use.png "In the wild")
 ### Features
 This app allows you to:
 + 🔭 View country level air quality readings: pm, co, o3, no2, so2
