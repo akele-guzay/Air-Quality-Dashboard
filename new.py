@@ -23,6 +23,19 @@ codes = api.countries(df=True,index=None,date_from='2010-01-01',limit=1000,has_g
 #let's make a dictionary
 cntry_dic = dict(zip(codes.code.tolist(),codes.name.tolist()))
 
+#glossary function
+def glossary():
+    with st.sidebar.beta_expander('Glossary'):
+        st.warning('''
+        Measurement paramters:
+        - pm25 measures fine inhalable particles, with diameters that are generally 2.5 micrometers and smaller in parts per million (ppm)
+        - pm10 measures inhalable particles, with diameters that are generally 10 micrometers and smaller in parts per million (ppm)
+        - co measures CarbonMonoxide in μg/m3
+        - o3 measures atomospheric Ozone in μg/m3
+        - so2 measures Sulfurdioxide in μg/m3
+        - no2 measures Nitrogendioxide in μg/m3
+        ''')
+    return
 #function to obtain information for all countries
 def all_country(mode):
     df= api.countries(df=True,index=None,date_from='2010-01-01',limit=1000,has_geo=True)
@@ -90,12 +103,13 @@ def country_compare(codes,cntry_dic):
         st.markdown('### Select parameters 👇🏿')
         country =st.selectbox('Please select a country 🌎 ',codes['name'].unique().tolist(),10)
         countries = get_key(country)
-        parameters = st.selectbox('Select measurement',['pm25', 'pm10', 'so2', 'co', 'no2', 'o3', 'bc'],0)
+        parameters = st.selectbox('Select measurement',['pm25', 'pm10', 'so2', 'co', 'no2', 'o3'],0)
         start_date = st.date_input('Select starting date 📅',datetime.date(2021,5,1))
         end_date = st.date_input('Select end date 📅',datetime.datetime.today())
         limit = st.number_input('Entries to display 🧮', min_value=1000, max_value=5000)
         generate = st.form_submit_button(label='Get Info')
-    #give some information
+    #glossery
+    glossary()
     #function to get data
     @st.cache
     def get_location_data(countries,parameters):
@@ -200,6 +214,7 @@ if menu =='All countries summary':
 if menu =='Latest Readings':
     try:
         latest()
+        glossary()
     except:
         col1,col2 = st.beta_columns((0.5,1.5))
         col1.markdown('''
