@@ -181,20 +181,21 @@ st.markdown('---')
 menu=st.sidebar.selectbox('Menu',['About','Country Mode','All countries summary','Latest Readings'])
 
 if menu == 'About':
-    st.sidebar.markdown('Written with ❤️ in <span style="background-color: #F38BA0">Python.</span> Check out the code on [Github]('').',unsafe_allow_html=True)
-    st.markdown('''
+    st.sidebar.markdown('Written with ❤️ in <span style="background-color: #F38BA0">Python.</span> Check out the code on [Github](https://github.com/akele-guzay/air).',unsafe_allow_html=True)
+    col1,col2 = st.beta_columns(2)
+    col1.markdown('''
     ## Open Air Quality
 
     OpenAQ is a non-profit organization empowering communities around the globe to clean their air by harmonizing, sharing, and using open air quality data.
-
-    ## Harmonizing air quality data
-
-    The OpenAQ Community harmonizes disparate air quality data from across the world so that citizens and organizations can fight air inequality more efficiently.
 
     ## This app
     This app utalizes this [Python Wrapper](https://github.com/dhhagan/py-openaq) for the OpenAQ API to display airquality data from accross the globe.
     Data is displayed more or less as is.
     ''')
+    col2.markdown('''
+    ![](https://media.giphy.com/media/yvWVQmvkjEv43rlBvW/giphy.gif)
+    ''')
+    col2.text('Abbey Luck, Giphy')
 if menu =='All countries summary':
     try:
         st.subheader('Measurement locations by country')
