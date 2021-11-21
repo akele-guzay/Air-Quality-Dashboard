@@ -15,6 +15,16 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="OpenAirQuality explorer", page_icon="‍🕵🏿‍♀️",
                    layout="wide", initial_sidebar_state="expanded",)
 
+#get rid of the side spaces
+padding = 1.5
+st.markdown(f""" <style>
+    .reportview-container .main .block-container{{
+        padding-top: {padding}rem;
+        padding-right: {padding}rem;
+        padding-left: {padding}rem;
+        padding-bottom: {padding}rem;
+    }} </style> """, unsafe_allow_html=True)
+
 #let's hide the menu
 hide_menu="""
 <style>
