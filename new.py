@@ -46,7 +46,7 @@ cntry_dic = dict(zip(codes.code.tolist(),codes.name.tolist()))
 
 #glossary function
 def glossary():
-    with st.sidebar.beta_expander('Glossary'):
+    with st.sidebar.expander('Glossary'):
         st.warning('''
         Measurement paramters:
         - pm25 measures fine inhalable particles, with diameters that are generally 2.5 micrometers and smaller in parts per million (ppm)
@@ -167,7 +167,7 @@ def country_compare(codes,cntry_dic):
         #summary of the figures
         st.markdown("### Raw data table for {} between {} and {}".format(parameters,df1['date.utc'].min(),df1['date.utc'].max()))
         st.write(df1)
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.columns(2)
         col1.markdown ("### Summary of {} readings by City".format(parameters))
         col2.markdown ("### Summary of {} readings for {}".format(parameters,country))
         col1.write(df1[['city','parameter','value']].groupby('city').agg({'parameter':'count','value':['min','max','median']}).style.highlight_max(color = '#F38BA0', axis = 0))
@@ -193,7 +193,7 @@ def country_compare(codes,cntry_dic):
 
     return
 
-col1,col2 = st.beta_columns((2,1))
+col1,col2 = st.columns((2,1))
 col2.write('''<h3 style="background-color: #F38BA0; text-align: center;
 font-family:monaco;border-bottom-left-radius: 15px; border-top-left-radius: 15px;
 border-top-right-radius: 15px; border-bottom-right-radius: 15px; padding: 7px; box-shadow: 6px -5px #B5EAEA;">
@@ -203,7 +203,7 @@ menu=st.sidebar.selectbox('Menu',['About','Country Mode','All countries summary'
 
 if menu == 'About':
     st.sidebar.markdown('Written with ❤️ in <span style="background-color: #F38BA0">Python.</span> Check out the code on [Github](https://github.com/akele-guzay/air).',unsafe_allow_html=True)
-    col1,col2 = st.beta_columns(2)
+    col1,col2 = st.columns(2)
     col1.markdown('''
     ## Open Air Quality
 
@@ -224,7 +224,7 @@ if menu =='All countries summary':
         mode = st.sidebar.selectbox('Display map by ',['locations','count','cities'])
         all_country(mode)
     except:
-        col1,col2 = st.beta_columns((0.5,1.5))
+        col1,col2 = st.columns((0.5,1.5))
         col1.markdown('''
         ![](https://media.giphy.com/media/Rkis28kMJd1aE/giphy.gif)
         ''')
@@ -238,7 +238,7 @@ if menu =='Latest Readings':
         latest()
         glossary()
     except:
-        col1,col2 = st.beta_columns((0.5,1.5))
+        col1,col2 = st.columns((0.5,1.5))
         col1.markdown('''
         ![](https://media.giphy.com/media/Rkis28kMJd1aE/giphy.gif)
         ''')
@@ -250,7 +250,7 @@ if menu == 'Country Mode':
     try:
         country_compare(codes,cntry_dic)
     except:
-        col1,col2 = st.beta_columns((0.5,1.5))
+        col1,col2 = st.columns((0.5,1.5))
         col1.markdown('''
         ![](https://media.giphy.com/media/Rkis28kMJd1aE/giphy.gif)
         ''')
