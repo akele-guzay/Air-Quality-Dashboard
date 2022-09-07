@@ -76,16 +76,16 @@ def all_country(mode):
     #another approach for the tooltip
     m = folium.Map(location=center_coor, zoom_start=1.5,  tiles='OpenStreetMap')
 
-    #choropleth layer for the police bounds and report data - for police sexual offenses
+    #choropleth layer for the countries
     chlor= folium.Choropleth(geo_data=merged,
                  data=merged,
-                 columns=['admin','{}'.format(mode)],name = 'Median household income',control=False,
+                 columns=['admin','{}'.format(mode)],name = '',control=False,
                  key_on='feature.properties.admin',
                  fill_color='YlGnBu', fill_opacity=0.7,
                              line_opacity=0.3,nan_fill_color="gray",
                              nan_fill_opacity=0.4,legend_name='Country count by {}'.format(mode), highlight=True,smooth_factor=0).add_to(m)
 
-    # add labels indicating the name of the station name
+    # add labels indicating the country and counts
     style_function = "font-size: 15px; font-weight: normal"
     chlor.geojson.add_child(
         folium.features.GeoJsonTooltip(['admin','{}'.format(mode)], style=style_function, labels=False))
@@ -122,10 +122,10 @@ def country_compare(codes,cntry_dic):
     #interactive layout
     with st.sidebar.form(key='parameters'):
         st.markdown('### Select parameters 👇🏿')
-        country =st.selectbox('Please select a country 🌎 ',codes['name'].unique().tolist(),10)
+        country =st.selectbox('Please select a country 🌎 ',codes['name'].unique().tolist(),50)
         countries = get_key(country)
         parameters = st.selectbox('Select measurement',['pm25', 'pm10', 'so2', 'co', 'no2', 'o3'],0)
-        start_date = st.date_input('Select starting date 📅',datetime.date(2021,5,1))
+        start_date = st.date_input('Select starting date 📅',datetime.date(2022,6,1))
         end_date = st.date_input('Select end date 📅',datetime.datetime.today())
         limit = st.number_input('Entries to display 🧮', min_value=1000, max_value=5000)
         generate = st.form_submit_button(label='Get Info')
