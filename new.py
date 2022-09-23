@@ -122,7 +122,7 @@ def country_compare(codes,cntry_dic):
     #interactive layout
     with st.sidebar.form(key='parameters'):
         st.markdown('### Select parameters 👇🏿')
-        country =st.selectbox('Please select a country 🌎 ',codes['name'].unique().tolist(),50)
+        country =st.selectbox('Please select a country 🌎 ',codes['name'].unique().tolist(),63)
         countries = get_key(country)
         parameters = st.selectbox('Select measurement',['pm25', 'pm10', 'so2', 'co', 'no2', 'o3'],0)
         start_date = st.date_input('Select starting date 📅',datetime.date(2022,6,1))
@@ -160,6 +160,7 @@ def country_compare(codes,cntry_dic):
         #let's chart the parameter readings readings
         fig1 = px.line(df1, x="date.utc", y="value",
                        hover_name='parameter', log_x=False, color='location')
+        fig1.update_xaxes(rangeslider_visible=True)
         fig1.update_layout(margin={"r": 0, "t": 10, "l": 0, "b": 0})
         #fig1.update_layout(hovermode='x')
         st.markdown('### {} airquality readings between *{}* and *{}*'.format(parameters,df1['date.utc'].min(),df1['date.utc'].max()))
