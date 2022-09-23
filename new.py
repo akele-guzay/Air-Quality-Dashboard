@@ -12,7 +12,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # set parameters for the page
-st.set_page_config(page_title="OpenAirQuality explorer", page_icon="‍🕵🏿‍♀️",
+st.set_page_config(page_title="OpenAirQuality explorer", page_icon="🌈",
                    layout="wide", initial_sidebar_state="expanded",)
 
 #get rid of the side spaces
